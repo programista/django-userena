@@ -56,7 +56,7 @@ class MessageContactManager(models.Manager):
 class MessageManager(models.Manager):
     """ Manager for the :class:`Message` model. """
 
-    def send_message(self, sender, to_user_list, body):
+    def send_message(self, sender, to_user_list, body, safe=False):
         """
         Send a message from a user, to a user.
 
@@ -68,10 +68,14 @@ class MessageManager(models.Manager):
 
         :param message:
             String containing the message.
+            
+        :param safe:
+            Bool which allows displaying html. Default set to False.
 
         """
         msg = self.model(sender=sender,
-                         body=body)
+                         body=body,
+                         safe=safe)
         msg.save()
 
         # Save the recipients
