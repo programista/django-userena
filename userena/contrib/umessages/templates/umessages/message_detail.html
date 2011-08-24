@@ -8,7 +8,11 @@
 <ul>
 {% for message in message_list %}
 <li>
+	{% if message.safe %}
+	{{ message|safe }}
+	{% else %}
   {{ message }}
+	{% endif %}
   <p>Received on {{ message.sent_at }}</p>
 </li>
 {% endfor %}

@@ -104,7 +104,9 @@ class Message(models.Model):
     sender_deleted_at = models.DateTimeField(_("sender deleted at"),
                                              null=True,
                                              blank=True)
-
+    
+    safe = models.BooleanField(_("safe"), default=False)
+    
     objects = MessageManager()
 
     class Meta:
