@@ -52,7 +52,8 @@ def message_list(request, page=1, paginate_by=50,
         An instance of ``django.core.paginator.Page``.
 
     """
-    queryset = MessageContact.objects.get_contacts_for(request.user)
+    queryset = MessageContact.objects.get_contacts_for(request.user)\
+        .select_related(depth=1)
 
     if not extra_context: extra_context = dict()
     return list_detail.object_list(request,
